@@ -6,6 +6,7 @@ use App\Entity\Articles;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ArticlesType extends AbstractType
 {
@@ -13,7 +14,7 @@ class ArticlesType extends AbstractType
     {
         $builder
             ->add('Titre')
-            ->add('Postere')
+            ->add('Postere', FileType::class)
             ->add('Article')
             ->add('DatePublication')
             ->add('Categorie')

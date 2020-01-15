@@ -4,10 +4,13 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\ArticlesRepository")
+ * @Vich\Uploadable
  */
 class Articles
 {
@@ -28,6 +31,12 @@ class Articles
      */
     private $Postere;
 
+    /**
+     * @Vich\UploadableField(mapping="article_images", fileNameProperty="Postere")
+     * @var File
+     */
+    private $imageFile;
+    
     /**
      * @ORM\Column(type="text")
      */
@@ -70,6 +79,16 @@ class Articles
         $this->Postere = $Postere;
 
         return $this;
+    }
+
+    public function setImageFile(File $Postere = null)
+    {
+        $this->imageFile = $Postere;
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 
     public function getArticle(): ?string
