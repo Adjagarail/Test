@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\CategoriesRepository")
  */
 class Categories
@@ -24,7 +26,7 @@ class Categories
     private $Nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $Descriptif;
 
@@ -60,7 +62,7 @@ class Categories
         return $this->Descriptif;
     }
 
-    public function setDescriptif(string $Descriptif): self
+    public function setDescriptif(?string $Descriptif): self
     {
         $this->Descriptif = $Descriptif;
 
@@ -96,5 +98,9 @@ class Categories
         }
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->Nom;
     }
 }
